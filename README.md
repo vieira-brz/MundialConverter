@@ -120,7 +120,6 @@ MIT License - veja [LICENSE](LICENSE) para detalhes.
 
 **Vinícius Braz**
 - GitHub: [@vieira-brz](https://github.com/vieira-brz)
-- LinkedIn: [Vinícius Braz](https://linkedin.com/in/vinicius-braz)
 
 ---
 
