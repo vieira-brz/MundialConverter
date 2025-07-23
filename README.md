@@ -1,160 +1,127 @@
-# 📅 Date Converter API
+# 🌍 MundialConverter
 
-Uma API robusta para conversão de datas entre diferentes formatos e países, otimizada para deploy no Vercel.
+Uma biblioteca Python completa de utilitários de conversão para desenvolvedores. Converta datas, moedas, unidades, texto e muito mais com facilidade e precisão.
 
-## 🚀 Funcionalidades
+## 🚀 Conversores Disponíveis
 
-- **Detecção automática** de formatos de data
-- **Suporte a múltiplos países** (BR, EUA, UK, DE, FR, ISO)
-- **Conversão com ou sem horário**
-- **Tratamento de timezone**
-- **Formatos flexíveis** de entrada
+### 📅 [Date Converter](./api/converter/date/)
+Conversão robusta de datas entre diferentes formatos e países.
+- ✅ **30+ formatos** de entrada suportados
+- ✅ **6 países/padrões**: BR, EUA, UK, DE, FR, ISO
+- ✅ **Detecção automática** de formato
+- ✅ **Suporte a timezone** e horários
 
-## 📋 Formatos Suportados
+```python
+from api.converter.date.date import DateConverter
 
-### Entrada (Auto-detectados)
-- `dd/mm/yyyy` - 23/07/2025
-- `dd-mm-yyyy` - 23-07-2025
-- `yyyy-mm-dd` - 2025-07-23
-- `mm/dd/yyyy` - 07/23/2025 (americano)
-- `dd.mm.yyyy` - 23.07.2025
-- `yyyy-mm-ddThh:mm:ss` - ISO format
-- `dd/mm/yyyy hh:mm:ss` - Com horário
-- `yyyymmdd` - Timestamp
-- E muitos outros...
-
-### Saída por País
-- **BR**: `dd/mm/yyyy` (timezone: America/Sao_Paulo)
-- **EUA/USA**: `mm/dd/yyyy` (timezone: America/New_York)
-- **UK**: `dd/mm/yyyy` (timezone: Europe/London)
-- **DE**: `dd.mm.yyyy` (timezone: Europe/Berlin)
-- **FR**: `dd/mm/yyyy` (timezone: Europe/Paris)
-- **ISO**: `yyyy-mm-dd` (timezone: UTC)
-
-## 🔗 Endpoints
-
-### `POST /api/converter/date`
-Converte uma data para o formato especificado.
-
-**Parâmetros:**
-```json
-{
-  "date": "2025-07-23 15:30:45",    // string (obrigatório)
-  "to_type": "BR",                  // string (padrão: "BR")
-  "return_hour": true               // boolean (padrão: false)
-}
+# Conversão simples
+result = DateConverter.detect_and_parse("23/07/2025")
+converted = DateConverter.convert_to_format(result, "EUA")
+print(converted)  # 07/23/2025
 ```
 
-**Resposta de sucesso:**
-```json
-{
-  "success": true,
-  "input": {
-    "original": "2025-07-23 15:30:45",
-    "parsed": "2025-07-23T15:30:45",
-    "detected_format": "auto-detected"
-  },
-  "output": {
-    "converted": "23/07/2025 15:30:45",
-    "format": "BR",
-    "with_hour": true,
-    "timezone": "America/Sao_Paulo"
-  },
-  "metadata": {
-    "conversion_time": "2025-07-23T18:30:45",
-    "api_version": "1.0"
-  }
-}
-```
+### 💰 [Currency Converter](./api/converter/currency/) *(Em desenvolvimento)*
+Conversão de moedas com taxas atualizadas.
+- 🔄 Taxas de câmbio em tempo real
+- 🌎 150+ moedas suportadas
+- 📊 Histórico de cotações
 
-### `GET /api/converter/date/formats`
-Lista todos os formatos e países suportados.
+### 📏 [Units Converter](./api/converter/units/) *(Em desenvolvimento)*
+Conversão entre diferentes unidades de medida.
+- ⚖️ Peso: kg, lb, oz, g
+- 📐 Distância: m, ft, in, km, mi
+- 🌡️ Temperatura: °C, °F, K
+- 📦 Volume: L, gal, ml, fl oz
 
-### `GET /api/converter/date/test`
-Executa testes com exemplos de conversões.
+### 🔤 [Text Converter](./api/converter/text/) *(Em desenvolvimento)*
+Conversão e manipulação de texto.
+- 🔄 Encoding: UTF-8, ASCII, Latin-1
+- 📝 Case: UPPER, lower, Title, camelCase
+- 🌐 Transliteração e normalização
 
-## 💡 Exemplos de Uso
-
-### Conversão Básica
-```bash
-curl -X POST https://your-vercel-app.vercel.app/api/converter/date \
-  -H "Content-Type: application/json" \
-  -d '{
-    "date": "23/07/2025",
-    "to_type": "EUA"
-  }'
-```
-
-### Com Horário
-```bash
-curl -X POST https://your-vercel-app.vercel.app/api/converter/date \
-  -H "Content-Type: application/json" \
-  -d '{
-    "date": "2025-07-23 15:30:45",
-    "to_type": "BR",
-    "return_hour": true
-  }'
-```
-
-### Via GET (query params)
-```bash
-curl "https://your-vercel-app.vercel.app/api/converter/date?date=23/07/2025&to_type=ISO"
-```
-
-## 🛠️ Deploy no Vercel
-
-1. **Clone o repositório**
-2. **Instale o Vercel CLI**: `npm i -g vercel`
-3. **Deploy**: `vercel --prod`
-
-### Arquivos de Configuração
-
-- `vercel.json` - Configuração do Vercel
-- `requirements.txt` - Dependências Python
-- `api/converter/date.py` - Código principal da API
-
-## 🧪 Testando Localmente
+## 📦 Instalação
 
 ```bash
-# Instalar dependências
+# Clone o repositório
+git clone https://github.com/vieira-brz/MundialConverter.git
+cd MundialConverter
+
+# Instale as dependências
 pip install -r requirements.txt
-
-# Executar servidor local
-python api/converter/date.py
-
-# Testar endpoint
-curl -X POST http://localhost:5000/api/converter/date \
-  -H "Content-Type: application/json" \
-  -d '{"date": "23/07/2025", "to_type": "BR"}'
 ```
 
-## 🔧 Casos de Uso
+## 🔧 Uso Rápido
 
-- **Sistemas internacionais** que precisam exibir datas no formato local
-- **APIs que recebem datas** em formatos variados
-- **Conversão de logs** e timestamps
-- **Normalização de dados** de diferentes fontes
-- **Aplicações multi-idioma**
+```python
+# Importar conversores
+from api.converter.date.date import DateConverter
+# from api.converter.currency.currency import CurrencyConverter  # Em breve
+# from api.converter.units.units import UnitsConverter            # Em breve
 
-## ⚠️ Tratamento de Erros
-
-A API retorna erros detalhados:
-
-```json
-{
-  "error": "Não foi possível interpretar a data: \"invalid-date\"",
-  "supported_formats": [
-    "dd/mm/yyyy", "dd-mm-yyyy", "yyyy-mm-dd",
-    "dd/mm/yyyy hh:mm:ss", "etc."
-  ]
-}
+# Exemplo: Conversão de data
+date_input = "2025-07-23 15:30"
+parsed_date = DateConverter.detect_and_parse(date_input)
+br_format = DateConverter.convert_to_format(parsed_date, "BR", True)
+print(f"Formato BR: {br_format}")  # 23/07/2025 15:30:00
 ```
 
-## 🌟 Características Técnicas
+## 📚 Documentação
 
-- **Detecção automática** de formatos usando regex e parsing
-- **Suporte a timezone** com pytz
-- **Validação robusta** de entrada
-- **Resposta estruturada** com metadados
-- **Compatível com Vercel** serverless functions
-- **Suporte a GET e POST**
+- 📖 [Getting Started](./docs/getting-started.md) - Guia de início rápido
+- 🚀 [Deployment](./docs/deployment.md) - Como usar em produção
+- 📅 [Date Converter](./api/converter/date/README.md) - Documentação completa
+
+## 🛠️ Estrutura do Projeto
+
+```
+MundialConverter/
+├── README.md                    # Este arquivo
+├── requirements.txt             # Dependências
+├── docs/                        # Documentação geral
+│   ├── getting-started.md
+│   └── deployment.md
+└── api/converter/               # Conversores
+    ├── date/                    # ✅ Conversor de datas
+    ├── currency/                # 🔄 Em desenvolvimento
+    ├── units/                   # 🔄 Em desenvolvimento
+    └── text/                    # 🔄 Em desenvolvimento
+```
+
+## 🎯 Casos de Uso
+
+- 🏢 **Sistemas internacionais** que precisam de formatação local
+- 📊 **ETL e processamento** de dados de diferentes fontes
+- 🌐 **APIs** que recebem dados em formatos variados
+- 📱 **Aplicações multi-idioma** e multi-região
+- 🔄 **Migração de dados** entre sistemas
+
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+## 📋 Roadmap
+
+- [x] ✅ Date Converter - Conversão de datas
+- [ ] 🔄 Currency Converter - Conversão de moedas
+- [ ] 🔄 Units Converter - Conversão de unidades
+- [ ] 🔄 Text Converter - Manipulação de texto
+- [ ] 🔄 Color Converter - Conversão de cores (HEX, RGB, HSL)
+- [ ] 🔄 Coordinate Converter - Conversão de coordenadas
+
+## 📄 Licença
+
+MIT License - veja [LICENSE](LICENSE) para detalhes.
+
+## 👨‍💻 Autor
+
+**Vinícius Braz**
+- GitHub: [@vieira-brz](https://github.com/vieira-brz)
+- LinkedIn: [Vinícius Braz](https://linkedin.com/in/vinicius-braz)
+
+---
+
+⭐ **Se este projeto foi útil, deixe uma estrela!** ⭐
