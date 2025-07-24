@@ -370,19 +370,25 @@ python date_converter_cli.py "2025-07-23 15:30" --country BR --time
 
 ## 🔍 Próximos Passos
 
-1. **Explore outros conversores** (quando disponíveis):
-   - Currency Converter
-   - Units Converter
-   - Text Converter
+1. **Explore todos os conversores disponíveis**:
+   - ✅ [Date Converter](../api/converter/date/README.md) - Conversão de datas
+   - ✅ [Currency Converter](../api/converter/currency/README.md) - Conversão de moedas
+   - ✅ [Units Converter](../api/converter/units/README.md) - Conversão de unidades
+   - ✅ [Text Converter](../api/converter/text/README.md) - Manipulação de texto
+   - ✅ [Color Converter](../api/converter/color/README.md) - Conversão de cores
+   - ✅ [Coordinate Converter](../api/converter/coordinate/README.md) - Conversão de coordenadas
+   - ✅ [Number Converter](../api/converter/number/README.md) - Conversão de bases numéricas
+   - ✅ [Image Converter](../api/converter/image/README.md) - Conversão de formatos de imagem
 
 2. **Leia a documentação completa**:
-   - [Date Converter README](../api/converter/date/README.md)
    - [Deployment Guide](./deployment.md)
+   - [README Principal](../README.md)
 
 3. **Contribua com o projeto**:
    - Reporte bugs
    - Sugira novos formatos
    - Adicione novos conversores
+   - Melhore a documentação
 
 ---
 
